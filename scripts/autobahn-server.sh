@@ -22,8 +22,8 @@ function test_diff() {
     fi
 }
 
-cargo run --release --example autobahn-server & WSSERVER_PID=$!
-sleep 5
+cargo run --release --example autobahn-server --features=deflate & WSSERVER_PID=$!
+sleep 3
 
 docker run --rm \
     -v "${PWD}/autobahn:/autobahn" \

@@ -24,6 +24,8 @@ rustls-tls-native-roots = ["__rustls-tls", "rustls-native-certs"]
 rustls-tls-webpki-roots = ["__rustls-tls", "webpki-roots"]
 __rustls-tls = ["rustls", "tokio-rustls", "stream", "tungstenite/__rustls-tls", "webpki"]
 stream = []
+deflate = ["tungstenite/deflate"]
+# deflate-zlib = ["tungstenite/deflate-zlib"]
 
 [dependencies]
 log = "0.4"
@@ -31,7 +33,8 @@ futures-util = { version = "0.3", default-features = false, features = ["sink", 
 tokio = { version = "1.0.0", default-features = false, features = ["io-util"] }
 
 [dependencies.tungstenite]
-version = "0.17.3"
+git = "https://github.com/kazk/tungstenite-rs"
+rev = "c09326840ac22704f6eaa13f9d23db5eddd92a5f"
 default-features = false
 
 [dependencies.native-tls-crate]
@@ -72,7 +75,11 @@ env_logger = "0.9"
 
 [[example]]
 name = "autobahn-client"
-required-features = ["connect"]
+required-features = ["connect", "deflate"]
+
+[[example]]
+name = "autobahn-server"
+required-features = ["deflate"]
 
 [[example]]
 name = "client"
